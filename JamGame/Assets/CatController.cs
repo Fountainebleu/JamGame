@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,11 @@ public class CatController : MonoBehaviour
         }
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+    }
+
+    private void Start()
+    {
+        body = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
