@@ -9,12 +9,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D body;
     private int whereLook; //Показывает куда смотрит персонаж, если налево, то -1, если направо, то 1
     [SerializeField] private LayerMask groundLayer;
-    private BoxCollider2D boxCollider; // ко
+    private Collider2D boxCollider; // ко
+
+    [SerializeField] private float xsize = 1f;
+    [SerializeField] private float ysize = 1f;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider = GetComponent<Collider2D>();
     }
 
     private void Update()
@@ -49,11 +52,11 @@ public class PlayerController : MonoBehaviour
     {
         if ((Input.GetAxis("Horizontal")) > 0)
         {
-            transform.localScale = new Vector2(0.7f, 0.7f);
+            transform.localScale = new Vector2(xsize, ysize);
         }
         else if ((Input.GetAxis("Horizontal")) < 0)
         {
-            transform.localScale = new Vector2(-0.7f, 0.7f);
+            transform.localScale = new Vector2(-xsize, ysize);
         }
     }
     
