@@ -15,11 +15,7 @@ public class BotsAI : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<CapsuleCollider2D>();
     }
-    void Start()
-    {
-        
-    }
-
+    
     // Update is called once per frame
     void Update()
     {

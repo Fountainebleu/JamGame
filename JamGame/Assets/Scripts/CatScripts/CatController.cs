@@ -8,10 +8,14 @@ public class CatController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpSpeed;
     private Rigidbody2D body;
-    private int whereLook; //Показывает куда смотрит персонаж, если налево, то -1, если направо, то 1
+
     [SerializeField] private LayerMask groundLayer;
-    private BoxCollider2D boxCollider; // ко
+    private Collider2D catcollider; // ко
     public static CatController Instance;
+
+    [SerializeField] private float xSize = 1;
+    [SerializeField] private float ySize = 1;
+    
 
     private void Awake()
     {
@@ -24,7 +28,7 @@ public class CatController : MonoBehaviour
             Instance = this;
         }
         body = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        catcollider = GetComponent<BoxCollider2D>();
     }
 
     private void Start()
@@ -67,19 +71,17 @@ public class CatController : MonoBehaviour
     {
         if ((Input.GetAxis("Horizontal")) > 0)
         {
-            transform.localScale = new Vector2(0.7f, 0.7f);
-            whereLook = 1;
+            transform.localScale = new Vector2(xSize, ySize);
         }
         else if ((Input.GetAxis("Horizontal")) < 0)
         {
-            transform.localScale = new Vector2(-0.7f, 0.7f);
-            whereLook = -1;
+            transform.localScale = new Vector2(-xSize, ySize);
         }
     }
     
     private bool isGrounded() //Проверяет нахождение персонажа на земле
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(catcollider.bounds.center, catcollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
         return raycastHit.collider != null;
     }
 }

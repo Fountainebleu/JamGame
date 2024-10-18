@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class NpcController : MonoBehaviour
 {
-    public GameObject player; // Ссылка на игрока
+    [SerializeField] private GameObject player; // Ссылка на игрока
     private bool isCollision = false;
     private Rigidbody2D rb;
     [SerializeField] private float speed;
     [SerializeField] private float jumpSpeed;
     private int whereLook; //Показывает куда смотрит персонаж, если налево, то -1, если направо, то 1
     [SerializeField] private LayerMask groundLayer;
-    private BoxCollider2D boxCollider; // ко
+    private Collider2D plcollider; // ко
     [SerializeField] private float xSize = 1;
     [SerializeField] private float ySize = 1;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        plcollider = GetComponent<Collider2D>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -89,7 +89,7 @@ public class NpcController : MonoBehaviour
     
     private bool isGrounded() //Проверяет нахождение персонажа на земле
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(plcollider.bounds.center, plcollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
         return raycastHit.collider != null;
     }
 }

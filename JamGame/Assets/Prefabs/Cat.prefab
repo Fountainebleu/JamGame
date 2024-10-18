@@ -176,3 +176,5 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  xSize: 0.7
+  ySize: 0.7
