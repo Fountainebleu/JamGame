@@ -11,6 +11,8 @@ TagManager:
   - 
   - Water
   - UI
+  - Ground
+  - Wall
   - 
   - 
   - 
@@ -34,9 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Is Ground Ahead for AI
   m_SortingLayers:
   - name: Default
     uniqueID: 0
