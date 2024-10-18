@@ -55,7 +55,7 @@ public class Lift : MonoBehaviour
 
     private bool IsLiftWorking;
 
-    private void LiftMove(int whatlift)
+    private void LiftMove(int whatlift) //Метод, который заставляет лифт двигаться и определяет, когда ему нужно остановиться.
     {
         lift1coord = Math.Abs(rb1.position.y);
 
@@ -63,29 +63,30 @@ public class Lift : MonoBehaviour
 
         IsLiftWorking = true;
 
-        if (Math.Abs(lift2StartCoord - lift1coord) < 1e-4 || Math.Abs(lift1StartCoord - lift2coord) < 1e-4 || IsWorkLiftEnd)
+        if (Math.Abs(lift2StartCoord - lift1coord) < 1e-2 || Math.Abs(lift1coord - lift2StartCoord) < 1e-2 || IsWorkLiftEnd) //Определяет когда нужно остановиться путём сравнения текущей координаты и начальной другой платформы.
         {
             rb1.velocity = new Vector2(0, 0);
             rb2.velocity = new Vector2(0, 0);
             lift1IsActive.SetActive(false);
             lift2IsActive.SetActive(false);
             IsWorkLiftEnd = true;
+            IsLiftWorking = false;
         }
 
-        if (whatlift == 1 && !IsWorkLiftEnd)
+        if (whatlift == 1 && !IsWorkLiftEnd) //работает, если сверху 1 лифт и двигает его в вниз, а 2 вверх
         {
             rb1.velocity = new Vector2(0, liftspeed);
             rb2.velocity = new Vector2(0, liftspeed * -1);
         }
 
-        else if (whatlift == 2 && !IsWorkLiftEnd)
+        else if (whatlift == 2 && !IsWorkLiftEnd)//работает, если сверху 2 лифт и двигает его вниз, а 1 вверх
         {
             rb1.velocity = new Vector2(0, liftspeed * -1);
             rb2.velocity = new Vector2(0, liftspeed);
         }
     }
 
-    private int WhatLiftToUse()
+    private int WhatLiftToUse() //определяет, какой лифт использовать на основе начальных координат. Какой лифт выше, такой и является главным
     {
         if (lift1StartCoord > lift2StartCoord && lift1IsActive.activeSelf)
         {
@@ -103,7 +104,7 @@ public class Lift : MonoBehaviour
         }
     }
 
-    private void IsLiftCanWorkAgain()
+    private void IsLiftCanWorkAgain() //Подготавливает лифт к тому, чтобы снова работать, меня стартовые значения лифтов между собой.
     {
         if (IsWorkLiftEnd)
         {
