@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8522499279983612664}
   - component: {fileID: 7612744723583264192}
   - component: {fileID: 8712481877004835217}
-  - component: {fileID: 2117285704656988587}
+  - component: {fileID: 964264532458937734}
   m_Layer: 6
   m_Name: Box
   m_TagString: Player
@@ -199,7 +199,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   kat: {fileID: 8300000, guid: 2af28a1387530bc4c9c9f764494f0612, type: 3}
---- !u!95 &2117285704656988587
+--- !u!95 &964264532458937734
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
