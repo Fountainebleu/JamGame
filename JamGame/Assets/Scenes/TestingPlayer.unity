@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 1803994344}
   - component: {fileID: 1803994343}
   - component: {fileID: 1803994345}
+  - component: {fileID: 1803994346}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Player
@@ -310,7 +311,7 @@ Transform:
   m_GameObject: {fileID: 1803994339}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8, y: -3.53, z: 0}
+  m_LocalPosition: {x: -0.923, y: -3.664, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -398,6 +399,28 @@ MonoBehaviour:
     m_Bits: 8
   xSize: 2
   ySize: 2
+--- !u!114 &1803994346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803994339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b54139d5d57fa418f5e14d05b450d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catBox: {fileID: 1992846730}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  isPickUp: 0
+--- !u!1 &1992846730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 458405996385099345, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
+  m_PrefabInstance: {fileID: 4961365121470518162}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2116947919
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1424249125489108037, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
       propertyPath: m_Constraints
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1624157748817054108, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
       propertyPath: m_Pivot.x
@@ -610,11 +633,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1624157748817054108, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -9.8
+      value: -9.86
       objectReference: {fileID: 0}
     - target: {fileID: 1624157748817054108, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.74
+      value: -3.72
       objectReference: {fileID: 0}
     - target: {fileID: 1624157748817054108, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

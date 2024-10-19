@@ -13,7 +13,8 @@ public class NPCPickUp : MonoBehaviour
     private Rigidbody2D rbcatbox;
     private Collider2D colcatbox;
     
-    private bool pickUp = false;
+    public bool isPickUp = false;
+    private bool npickUp = false;
     
     void Awake()
     {
@@ -27,47 +28,55 @@ public class NPCPickUp : MonoBehaviour
     {
         if (isCollision && Input.GetKeyDown(KeyCode.F))
         {
-            rbcatbox.constraints = RigidbodyConstraints2D.None;
-            rbcatbox.constraints = RigidbodyConstraints2D.FreezeRotation;
+            print("Коробку подняли");
+            rbcatbox.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
             isCollision = false;
-            pickUp = true;
-        }
+            isPickUp = true;
+            Invoke("CanWeDownBox", 0.1f);
+        } 
 
-        else if (pickUp)
-        {
+        if (isPickUp)
+        {   
+            print("Коробка держится");
             PickUpBox();
         }
 
-        else if (pickUp && Input.GetKeyDown(KeyCode.F))
+        if (isPickUp && Input.GetKeyDown(KeyCode.F) && cwdb)
         {
+            print("Коробку опустили");
             PickDownBox();
-            pickUp = false;
+            isPickUp = false;
+            npickUp = true;
+            cwdb = false;
+            rbcatbox.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         }
 
-        if (isGrounded())
-        {
-            rbcatbox.constraints = RigidbodyConstraints2D.FreezeRotation;
-            rbcatbox.constraints = RigidbodyConstraints2D.FreezePositionX;
-        }
         
+        
+
+        if (isGrounded() && npickUp)
+        {
+            print("На земле");
+            npickUp = false;
+        }
     }
 
     private void PickUpBox()
     {
-        rbcatbox.position = new Vector2(rbNPC.position.x, rbNPC.position.y);
+        rbcatbox.position = new Vector2(rbNPC.position.x, rbNPC.position.y + 1.02f);
     }
 
     private void PickDownBox()
     {
         rbcatbox.position = new Vector2(rbNPC.position.x, rbNPC.position.y);
-        rbNPC.position = new Vector2(rbNPC.position.x, rbNPC.position.y + 1);
+        rbNPC.position = new Vector2(rbNPC.position.x, rbNPC.position.y + 1.2f);
     }
 
     private bool isCollision = false;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box"))
+        if (collision.gameObject.CompareTag("Box") && !isPickUp)
         {
             isCollision = true;
         }
@@ -85,5 +94,11 @@ public class NPCPickUp : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(colcatbox.bounds.center, colcatbox.bounds.size, 0, Vector2.down, 0.02f, groundLayer);
         return raycastHit.collider != null;
+    }
+
+    private bool cwdb = false;
+    private void CanWeDownBox()
+    {
+        cwdb = true;
     }
 }

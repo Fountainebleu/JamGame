@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraFollow2D : MonoBehaviour
 {
-    [SerializeField] private Transform playerTransform;
+    [SerializeField] public Transform playerTransform;
     [SerializeField] private float movingSpeed;
     
     // Update is called once per frame

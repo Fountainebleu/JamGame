@@ -43,12 +43,14 @@ public class NpcController : MonoBehaviour
             isCollision = false;
             SpawnC();
         }
+        
         else if (isCollision)
         {
             Move();
             Jump();
             WhereCharLook();
         }
+
         if (isCollision && Input.GetKeyDown(KeyCode.Q))
         {
             isCollision = false;
