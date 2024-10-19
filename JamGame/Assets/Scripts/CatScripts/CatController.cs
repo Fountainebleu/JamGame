@@ -15,6 +15,7 @@ public class CatController : MonoBehaviour
 
     [SerializeField] private float xSize = 1;
     [SerializeField] private float ySize = 1;
+    private GameObject box;
     
 
     private void Awake()
@@ -29,6 +30,7 @@ public class CatController : MonoBehaviour
         }
         body = GetComponent<Rigidbody2D>();
         catcollider = GetComponent<BoxCollider2D>();
+        box = GameObject.FindGameObjectWithTag("Box");
     }
 
     private void Start()
@@ -42,6 +44,12 @@ public class CatController : MonoBehaviour
         Jump();
         WhereCharLook();
         if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Destroy(gameObject, 0.1f);
+        }
+
+        if (Math.Abs(body.transform.position.x - box.transform.position.x) > 4 ||
+            Math.Abs(body.transform.position.y - box.transform.position.y) > 4)
         {
             Destroy(gameObject, 0.1f);
         }
