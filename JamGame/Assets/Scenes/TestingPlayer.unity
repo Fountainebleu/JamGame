@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 278096118}
   m_Layer: 0
   m_Name: NPC (1)
-  m_TagString: Player
+  m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2338189897242951219, guid: b7f80044b5c6b7744832a30bb219896b, type: 3}
+  isCollision: 0
   speed: 3
   jumpSpeed: 0
   groundLayer:
@@ -434,7 +435,7 @@ GameObject:
   - component: {fileID: 1803994346}
   m_Layer: 0
   m_Name: NPC
-  m_TagString: Player
+  m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -581,6 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2338189897242951219, guid: b7f80044b5c6b7744832a30bb219896b, type: 3}
+  isCollision: 0
   speed: 3
   jumpSpeed: 0
   groundLayer:
@@ -843,6 +845,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7612744723583264192, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712481877004835217, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712481877004835217, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 8
       objectReference: {fileID: 0}
