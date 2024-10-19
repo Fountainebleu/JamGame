@@ -7,19 +7,16 @@ public class CatController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpSpeed;
-
-    [SerializeField] private float maxDistanceToGo = 4;
     private Rigidbody2D body;
 
     [SerializeField] private LayerMask groundLayer;
-
-    [SerializeField] private LayerMask boxLayer;
     private Collider2D catcollider; // ко
     public static CatController Instance;
 
     [SerializeField] private float xSize = 1;
     [SerializeField] private float ySize = 1;
     private GameObject box;
+    private Animator anim;
     
 
     private void Awake()
@@ -34,7 +31,8 @@ public class CatController : MonoBehaviour
         }
         body = GetComponent<Rigidbody2D>();
         catcollider = GetComponent<BoxCollider2D>();
-        box = GameObject.FindGameObjectWithTag("Player");
+        box = GameObject.FindGameObjectWithTag("Box");
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -51,8 +49,8 @@ public class CatController : MonoBehaviour
         {
             Destroy(gameObject, 0.1f);
         }
-        if (Math.Abs(body.transform.position.x - box.transform.position.x) > maxDistanceToGo ||
-            Math.Abs(body.transform.position.y - box.transform.position.y) > maxDistanceToGo)
+        if (Math.Abs(body.transform.position.x - box.transform.position.x) > 4 ||
+            Math.Abs(body.transform.position.y - box.transform.position.y) > 4)
         {
             Destroy(gameObject, 0.1f);
         }
@@ -60,14 +58,9 @@ public class CatController : MonoBehaviour
 
     private void Move() //Метод управляющий движением и ускорением на кнопку shift
     {
-        if (Input.GetKey(KeyCode.LeftShift)) //Если нажата кнопка shift, то удвоит скорость
-        {
-            body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * 2, body.velocity.y);
-        }
-        else
-        {
-            body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
-        }
+        var horInp = Input.GetAxis("Horizontal");
+        body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
+        anim.SetBool("walk",horInp != 0);
     }
 
     private void Jump() //Метод прыжка
@@ -93,7 +86,6 @@ public class CatController : MonoBehaviour
     private bool isGrounded() //Проверяет нахождение персонажа на земле
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(catcollider.bounds.center, catcollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
-        RaycastHit2D raycastHit2 = Physics2D.BoxCast(catcollider.bounds.center, catcollider.bounds.size, 0, Vector2.down, 0.1f, boxLayer);
-        return raycastHit.collider != null || raycastHit2.collider != null;
+        return raycastHit.collider != null;
     }
 }
