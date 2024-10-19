@@ -6,9 +6,9 @@ public class LiftTouching : MonoBehaviour
 {
     [SerializeField] private GameObject liftTouching;
     private bool isAgain = false;
-    private void OnTriggerEnter2D()
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!isAgain)
+        if (!isAgain && !collider.gameObject.CompareTag("Cat"))
         {
             liftTouching.SetActive(true);
             isAgain = true;
@@ -16,9 +16,13 @@ public class LiftTouching : MonoBehaviour
         
     }
 
-    private void OnTriggerExit2D()
+    private void OnTriggerExit2D(Collider2D collider)
     {
-        isAgain = false;
-        liftTouching.SetActive(false);
+        if (isAgain && !collider.gameObject.CompareTag("Cat"))
+        {
+            isAgain = false;
+            liftTouching.SetActive(false);
+        }
+        
     }
 }
