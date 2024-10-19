@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 278096120}
   - component: {fileID: 278096119}
   - component: {fileID: 278096118}
-  - component: {fileID: 278096117}
   m_Layer: 0
   m_Name: NPC (1)
   m_TagString: Player
@@ -144,26 +143,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &278096117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278096116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b54139d5d57fa418f5e14d05b450d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  catBox: {fileID: 1803994339}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  tagObject: Player
-  throwPower: 5
-  isCanThrow: 1
-  isPickUp: 0
 --- !u!114 &278096118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +159,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  tagObject: Box
   throwPower: 5
   isCanThrow: 1
   isPickUp: 0
@@ -454,7 +432,6 @@ GameObject:
   - component: {fileID: 1803994343}
   - component: {fileID: 1803994345}
   - component: {fileID: 1803994346}
-  - component: {fileID: 1803994347}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Player
@@ -627,27 +604,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  tagObject: Box
-  throwPower: 5
-  isCanThrow: 1
-  isPickUp: 0
---- !u!114 &1803994347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803994339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b54139d5d57fa418f5e14d05b450d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  catBox: {fileID: 278096116}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  tagObject: Player
   throwPower: 5
   isCanThrow: 1
   isPickUp: 0
@@ -868,11 +824,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1624157748817054108, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -9.86
+      value: -3.34
       objectReference: {fileID: 0}
     - target: {fileID: 1624157748817054108, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.72
+      value: -3.55
       objectReference: {fileID: 0}
     - target: {fileID: 1624157748817054108, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

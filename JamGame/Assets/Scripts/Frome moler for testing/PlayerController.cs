@@ -10,14 +10,14 @@ public class PlayerController : MonoBehaviour
     private int whereLook; //Показывает куда смотрит персонаж, если налево, то -1, если направо, то 1
     [SerializeField] private LayerMask groundLayer;
     private Collider2D boxCollider; // ко
-
+    private GameObject box;
     [SerializeField] private float xsize = 1f;
     [SerializeField] private float ysize = 1f;
 
     private void Awake()
     {
-        body = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<Collider2D>();
+        
+       
     }
 
     private void Update()
