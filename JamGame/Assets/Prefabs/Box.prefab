@@ -179,7 +179,7 @@ MonoBehaviour:
   cat: {fileID: 2338189897242951219, guid: b7f80044b5c6b7744832a30bb219896b, type: 3}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!1 &7534044773974690590
 GameObject:
   m_ObjectHideFlags: 0
