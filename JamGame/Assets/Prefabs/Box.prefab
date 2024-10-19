@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 1424249125489108037}
   - component: {fileID: 8522499279983612664}
   - component: {fileID: 7612744723583264192}
-  m_Layer: 6
+  - component: {fileID: -4791185109733921471}
+  m_Layer: 3
   m_Name: Box
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -177,9 +178,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cat: {fileID: 2338189897242951219, guid: b7f80044b5c6b7744832a30bb219896b, type: 3}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
+--- !u!114 &-4791185109733921471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458405996385099345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5a13cd48f33454285bf4c9884b6c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7534044773974690590
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7558702741551412749}
   - component: {fileID: 1912829038071512340}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: CatSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
