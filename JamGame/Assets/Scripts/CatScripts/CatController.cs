@@ -10,6 +10,7 @@ public class CatController : MonoBehaviour
     private Rigidbody2D body;
 
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask playerLayer;
     private Collider2D catcollider; // ко
     public static CatController Instance;
 
@@ -86,6 +87,7 @@ public class CatController : MonoBehaviour
     private bool isGrounded() //Проверяет нахождение персонажа на земле
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(catcollider.bounds.center, catcollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
-        return raycastHit.collider != null;
+        RaycastHit2D raycastHit2 = Physics2D.BoxCast(catcollider.bounds.center, catcollider.bounds.size, 0, Vector2.down, 0.1f, playerLayer);
+        return raycastHit.collider != null || raycastHit2.collider != null;
     }
 }
