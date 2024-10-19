@@ -7,9 +7,13 @@ public class CatController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpSpeed;
+
+    [SerializeField] private float maxDistanceToGo = 4;
     private Rigidbody2D body;
 
     [SerializeField] private LayerMask groundLayer;
+
+    [SerializeField] private LayerMask boxLayer;
     private Collider2D catcollider; // ко
     public static CatController Instance;
 
@@ -30,7 +34,7 @@ public class CatController : MonoBehaviour
         }
         body = GetComponent<Rigidbody2D>();
         catcollider = GetComponent<BoxCollider2D>();
-        box = GameObject.FindGameObjectWithTag("Box");
+        box = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Start()
@@ -47,8 +51,8 @@ public class CatController : MonoBehaviour
         {
             Destroy(gameObject, 0.1f);
         }
-        if (Math.Abs(body.transform.position.x - box.transform.position.x) > 4 ||
-            Math.Abs(body.transform.position.y - box.transform.position.y) > 4)
+        if (Math.Abs(body.transform.position.x - box.transform.position.x) > maxDistanceToGo ||
+            Math.Abs(body.transform.position.y - box.transform.position.y) > maxDistanceToGo)
         {
             Destroy(gameObject, 0.1f);
         }
@@ -89,6 +93,7 @@ public class CatController : MonoBehaviour
     private bool isGrounded() //Проверяет нахождение персонажа на земле
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(catcollider.bounds.center, catcollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
-        return raycastHit.collider != null;
+        RaycastHit2D raycastHit2 = Physics2D.BoxCast(catcollider.bounds.center, catcollider.bounds.size, 0, Vector2.down, 0.1f, boxLayer);
+        return raycastHit.collider != null || raycastHit2.collider != null;
     }
 }

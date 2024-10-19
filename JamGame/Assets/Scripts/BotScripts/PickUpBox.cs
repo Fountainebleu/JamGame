@@ -8,7 +8,7 @@ public class NPCPickUp : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayer;
 
-    [SerializeField] private float throwPower = 100;
+    [SerializeField] private float throwPower = 5;
 
     [SerializeField] private bool isCanThrow = false;
 
@@ -32,11 +32,12 @@ public class NPCPickUp : MonoBehaviour
     {
         if (isCollision && Input.GetKeyDown(KeyCode.F))
         {
-            rbcatbox.mass = 1;
+            //rbcatbox.mass = 1;
             print("Коробку подняли");
             isCollision = false;
             isPickUp = true;
             Invoke("CanWeDownBox", 0.1f);
+            rbcatbox.gravityScale = 0;
         } 
 
         if (isPickUp)
@@ -47,21 +48,24 @@ public class NPCPickUp : MonoBehaviour
         if (isPickUp && Input.GetKeyDown(KeyCode.F) && cwdb && isCanThrow == false)
         {
             rbcatbox.mass = 150;
-            print("Коробку опустили");
-            PickDownBox();
+            rbcatbox.gravityScale = 1;
+            print("Коробку отпустили");
             isPickUp = false;
             npickUp = true;
             cwdb = false;
+
         }
 
         if (isPickUp && Input.GetKeyDown(KeyCode.F) && cwdb && isCanThrow == true)
         {
             rbcatbox.mass = 150;
             print("Коробку бросили");
+            rbcatbox.gravityScale = 1;
             ThrowBox();
             isPickUp = false;
             npickUp = true;
             cwdb = false;
+            
         }
 
         if (isGrounded())
@@ -73,13 +77,7 @@ public class NPCPickUp : MonoBehaviour
 
     private void PickUpBox()
     {
-        rbcatbox.position = new Vector2(rbNPC.position.x, rbNPC.position.y + 1.02f);
-    }
-
-    private void PickDownBox()
-    {
-        rbcatbox.position = new Vector2(rbNPC.position.x, rbNPC.position.y);
-        rbNPC.position = new Vector2(rbNPC.position.x, rbNPC.position.y + 1.2f);
+        rbcatbox.position = new Vector2(rbNPC.position.x, rbNPC.position.y + 1.1f);
     }
 
     private void ThrowBox()
@@ -92,7 +90,7 @@ public class NPCPickUp : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box") && !isPickUp)
+        if (collision.gameObject.CompareTag("Player") && !isPickUp)
         {
             isCollision = true;
         }
@@ -100,7 +98,7 @@ public class NPCPickUp : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             isCollision =  false;
         }
