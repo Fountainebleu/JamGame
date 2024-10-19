@@ -15,11 +15,13 @@ public class NpcController : MonoBehaviour
     private Collider2D plcollider; // ко
     [SerializeField] private float xSize = 1;
     [SerializeField] private float ySize = 1;
-
+    private Animator anim;
+    [SerializeField] private AudioClip vsel;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         plcollider = GetComponent<Collider2D>();
+        anim = GetComponent<Animator>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -28,6 +30,7 @@ public class NpcController : MonoBehaviour
         {
             isCollision = true;
             Destroy(collision.gameObject);
+            SoundManager.instance.PlaySound(vsel);
         }
     }
     
@@ -59,14 +62,9 @@ public class NpcController : MonoBehaviour
     
     private void Move() //Метод управляющий движением и ускорением на кнопку shift
     {
-        if (Input.GetKey(KeyCode.LeftShift)) //Если нажата кнопка shift, то удвоит скорость
-        {
-            rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * 2, rb.velocity.y);
-        }
-        else
-        {
-            rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
-        }
+        var horInp = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
+        anim.SetBool("walk",horInp != 0);
     }
 
     private void Jump() //Метод прыжка

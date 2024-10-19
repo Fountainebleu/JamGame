@@ -12,11 +12,14 @@ public class BoxController : MonoBehaviour
     private BoxCollider2D boxCollider; // ко
     private GameObject cat;
     private GameObject[] humans;
+    private Animator anim;
+    [SerializeField] private AudioClip kat;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -43,7 +46,9 @@ public class BoxController : MonoBehaviour
 
     private void Move() //Метод управляющий движением и ускорением на кнопку shift
     {
-            body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
+        var horInp = Input.GetAxis("Horizontal");
+        body.velocity = new Vector2(horInp * speed, body.velocity.y);
+        anim.SetBool("walk",horInp != 0);
     }
     private void WhereCharLook() //Меняет направление взгляда персонажа
     {

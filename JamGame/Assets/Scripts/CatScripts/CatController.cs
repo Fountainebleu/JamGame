@@ -16,6 +16,7 @@ public class CatController : MonoBehaviour
     [SerializeField] private float xSize = 1;
     [SerializeField] private float ySize = 1;
     private GameObject box;
+    private Animator anim;
     
 
     private void Awake()
@@ -31,6 +32,7 @@ public class CatController : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         catcollider = GetComponent<BoxCollider2D>();
         box = GameObject.FindGameObjectWithTag("Box");
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -56,14 +58,9 @@ public class CatController : MonoBehaviour
 
     private void Move() //Метод управляющий движением и ускорением на кнопку shift
     {
-        if (Input.GetKey(KeyCode.LeftShift)) //Если нажата кнопка shift, то удвоит скорость
-        {
-            body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * 2, body.velocity.y);
-        }
-        else
-        {
-            body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
-        }
+        var horInp = Input.GetAxis("Horizontal");
+        body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
+        anim.SetBool("walk",horInp != 0);
     }
 
     private void Jump() //Метод прыжка
