@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 1803994343}
   - component: {fileID: 1803994345}
   m_Layer: 0
-  m_Name: PlayerBot
+  m_Name: NPC
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -539,6 +539,14 @@ PrefabInstance:
     - target: {fileID: 458405996385099345, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
       propertyPath: m_Name
       value: Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424249125489108037, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424249125489108037, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
+      propertyPath: m_Constraints
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1624157748817054108, guid: d44b1b5c2953d424d9bc8a370209130d, type: 3}
       propertyPath: m_Pivot.x
