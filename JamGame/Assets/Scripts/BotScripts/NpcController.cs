@@ -77,15 +77,19 @@ public class NpcController : MonoBehaviour
         }
     }
 
+    public static int whereIsHeLook = 1;
     private void WhereCharLook() //Меняет направление взгляда персонажа
     {
         if ((Input.GetAxis("Horizontal")) > 0)
         {
             transform.localScale = new Vector2(xSize, ySize);
+            whereIsHeLook = 1;
+
         }
         else if ((Input.GetAxis("Horizontal")) < 0)
         {
             transform.localScale = new Vector2(-xSize, ySize);
+            whereIsHeLook = -1;
         }
     }
     

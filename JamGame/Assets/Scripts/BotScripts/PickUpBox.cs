@@ -8,6 +8,10 @@ public class NPCPickUp : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private float throwPower = 100;
+
+    [SerializeField] private bool isCanThrow = false;
+
     private Rigidbody2D rbNPC;
 
     private Rigidbody2D rbcatbox;
@@ -28,8 +32,8 @@ public class NPCPickUp : MonoBehaviour
     {
         if (isCollision && Input.GetKeyDown(KeyCode.F))
         {
+            rbcatbox.mass = 1;
             print("Коробку подняли");
-            rbcatbox.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
             isCollision = false;
             isPickUp = true;
             Invoke("CanWeDownBox", 0.1f);
@@ -37,24 +41,30 @@ public class NPCPickUp : MonoBehaviour
 
         if (isPickUp)
         {   
-            print("Коробка держится");
             PickUpBox();
         }
 
-        if (isPickUp && Input.GetKeyDown(KeyCode.F) && cwdb)
+        if (isPickUp && Input.GetKeyDown(KeyCode.F) && cwdb && isCanThrow == false)
         {
+            rbcatbox.mass = 150;
             print("Коробку опустили");
             PickDownBox();
             isPickUp = false;
             npickUp = true;
             cwdb = false;
-            rbcatbox.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         }
 
-        
-        
+        if (isPickUp && Input.GetKeyDown(KeyCode.F) && cwdb && isCanThrow == true)
+        {
+            rbcatbox.mass = 150;
+            print("Коробку бросили");
+            ThrowBox();
+            isPickUp = false;
+            npickUp = true;
+            cwdb = false;
+        }
 
-        if (isGrounded() && npickUp)
+        if (isGrounded())
         {
             print("На земле");
             npickUp = false;
@@ -70,6 +80,12 @@ public class NPCPickUp : MonoBehaviour
     {
         rbcatbox.position = new Vector2(rbNPC.position.x, rbNPC.position.y);
         rbNPC.position = new Vector2(rbNPC.position.x, rbNPC.position.y + 1.2f);
+    }
+
+    private void ThrowBox()
+    {
+        rbcatbox.AddForce(new Vector2(NpcController.whereIsHeLook * 0.5f, 1) * throwPower * rbcatbox.mass, ForceMode2D.Impulse);
+        print(NpcController.whereIsHeLook);
     }
 
     private bool isCollision = false;
@@ -92,8 +108,17 @@ public class NPCPickUp : MonoBehaviour
 
     private bool isGrounded() //Проверяет нахождение персонажа на земле
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(colcatbox.bounds.center, colcatbox.bounds.size, 0, Vector2.down, 0.02f, groundLayer);
-        return raycastHit.collider != null;
+        RaycastHit2D hit = Physics2D.Raycast(rbcatbox.position, Vector2.left, 0.03f, groundLayer);
+
+        if (hit == true)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
     }
 
     private bool cwdb = false;
